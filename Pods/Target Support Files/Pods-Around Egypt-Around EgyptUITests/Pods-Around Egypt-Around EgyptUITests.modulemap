@@ -1,0 +1,6 @@
+framework module Pods_Around_Egypt_Around_EgyptUITests {
+  umbrella header "Pods-Around Egypt-Around EgyptUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
