@@ -47,15 +47,19 @@ struct ExperienceScreen: View {
                 if let experience = viewModel.experience {
                     VStack {
                         URLImage(urlString: experience.cover_photo)
+                        VStack {
+                            Text(experience.title)
+                                .font(.title)
+                            Text(experience.city.name + ", Egypt")
+                        }
                         HStack {
-                            Text("Likes: \(experience.views_no)")
+                            Text("Likes: \(experience.likes_no)")
                             Spacer()
-                            Text("Views: \(experience.likes_no)")
+                            Text("Views: \(experience.views_no)")
                         }
                         .padding()
-                        Text(experience.title)
-                            .font(.title)
-                        Text(experience.city.name + ", Egypt")
+                        
+                        
                         ScrollView {
                             Text(experience.description)
                                 .padding()
