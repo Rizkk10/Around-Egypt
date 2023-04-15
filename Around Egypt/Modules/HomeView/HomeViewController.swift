@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import SwiftUI
+import Reachability
+
 protocol HomeViewProtocol : AnyObject {
     
     func renderCollection()
@@ -18,6 +21,9 @@ class HomeViewController: UIViewController , HomeViewProtocol {
     @IBOutlet weak var mostRecent: UICollectionView!
     var searchController: UISearchController!
     var viewModel : HomeViewModel!
+    let reachability = try! Reachability()
+    let cache = NSCache<NSString, NSArray>()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +33,21 @@ class HomeViewController: UIViewController , HomeViewProtocol {
                 self?.renderCollection()
             }
         }
-        viewModel.getRecommendedExperiences()
-        viewModel.getRecentExperiences()
+        
+        if reachability.connection != .unavailable {
+            viewModel.getRecommendedExperiences()
+            viewModel.getRecentExperiences()
+        } else {
+            // Load data from cache if app is offline
+            if let cachedRecommended = cache.object(forKey: "recommendedExperiences") as? [Experiences] {
+                viewModel.recommendedResult = cachedRecommended
+            }
+            
+            if let cachedRecent = cache.object(forKey: "recentExperiences") as? [Experiences] {
+                viewModel.recentResult = cachedRecent
+            }
+            renderCollection()
+        }
         configureSearchController()
     }
     
@@ -40,7 +59,7 @@ class HomeViewController: UIViewController , HomeViewProtocol {
 }
 extension HomeViewController: UISearchResultsUpdating, UISearchControllerDelegate {
     func updateSearchResults(for searchController: UISearchController) {
-       
+        
     }
     
     func configureSearchController(){
@@ -93,6 +112,20 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let Experience = ExperienceScreenData()
+        if collectionView == recommendedExperience {
+            Experience.experienceID = viewModel.recommendedResult[indexPath.row].id!
+        }
+        if collectionView == mostRecent {
+            Experience.experienceID = viewModel.recentResult[indexPath.row].id!
+        }
+        let ExperienceVC = UIHostingController(rootView: ExperienceScreen().environmentObject(Experience))
+        
+        self.navigationController?.pushViewController(ExperienceVC, animated: true)
     }
     
     

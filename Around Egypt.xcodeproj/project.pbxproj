@@ -10,6 +10,8 @@
 		12A735D9AD9C75261AAEF7D6 /* Pods_Around_Egypt_Around_EgyptUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F39123A0147230AC0491963 /* Pods_Around_Egypt_Around_EgyptUITests.framework */; };
 		626550D2594AE80D5671EB85 /* Pods_Around_EgyptTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2290FCF495091CDDDF0A8DB5 /* Pods_Around_EgyptTests.framework */; };
 		C7164A1DD4F49E24BDA7ED4E /* Pods_Around_Egypt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E837D3DF7535C8D48F1E1F /* Pods_Around_Egypt.framework */; };
+		F032E93829EA21E300B0F381 /* ExperienceScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F032E93729EA21E300B0F381 /* ExperienceScreen.swift */; };
+		F032E93A29EA47CF00B0F381 /* ExperienceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F032E93929EA47CF00B0F381 /* ExperienceViewModel.swift */; };
 		F0E703A429E8D47E007946C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E703A329E8D47E007946C0 /* AppDelegate.swift */; };
 		F0E703A629E8D47E007946C0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E703A529E8D47E007946C0 /* SceneDelegate.swift */; };
 		F0E703A829E8D47E007946C0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E703A729E8D47E007946C0 /* HomeViewController.swift */; };
@@ -56,6 +58,8 @@
 		4F39123A0147230AC0491963 /* Pods_Around_Egypt_Around_EgyptUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Around_Egypt_Around_EgyptUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EDA0C365E107F4E45249DBF /* Pods-Around Egypt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Around Egypt.release.xcconfig"; path = "Target Support Files/Pods-Around Egypt/Pods-Around Egypt.release.xcconfig"; sourceTree = "<group>"; };
 		E2AEFCD113D62DB08B51963E /* Pods-Around Egypt-Around EgyptUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Around Egypt-Around EgyptUITests.release.xcconfig"; path = "Target Support Files/Pods-Around Egypt-Around EgyptUITests/Pods-Around Egypt-Around EgyptUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F032E93729EA21E300B0F381 /* ExperienceScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceScreen.swift; sourceTree = "<group>"; };
+		F032E93929EA47CF00B0F381 /* ExperienceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceViewModel.swift; sourceTree = "<group>"; };
 		F0E703A029E8D47E007946C0 /* Around Egypt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Around Egypt.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0E703A329E8D47E007946C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0E703A529E8D47E007946C0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -130,6 +134,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		F032E93629EA21CD00B0F381 /* ExperienceScreen */ = {
+			isa = PBXGroup;
+			children = (
+				F032E93729EA21E300B0F381 /* ExperienceScreen.swift */,
+			);
+			path = ExperienceScreen;
+			sourceTree = "<group>";
+		};
 		F0E7039729E8D47E007946C0 = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +206,7 @@
 		F0E703D729E8D811007946C0 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				F032E93629EA21CD00B0F381 /* ExperienceScreen */,
 				F0E703EC29E90309007946C0 /* SearchView */,
 				F0E703D929E8D860007946C0 /* HomeView */,
 				F0E703D829E8D835007946C0 /* ViewModels */,
@@ -205,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				F0E703EA29E8EECB007946C0 /* HomeViewModel.swift */,
+				F032E93929EA47CF00B0F381 /* ExperienceViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -515,8 +529,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F032E93A29EA47CF00B0F381 /* ExperienceViewModel.swift in Sources */,
 				F0E703EE29E90336007946C0 /* SearchViewController.swift in Sources */,
 				F0E703E329E8D9E2007946C0 /* NetworkManger.swift in Sources */,
+				F032E93829EA21E300B0F381 /* ExperienceScreen.swift in Sources */,
 				F0E703EB29E8EECB007946C0 /* HomeViewModel.swift in Sources */,
 				F0E703A829E8D47E007946C0 /* HomeViewController.swift in Sources */,
 				F0E703A429E8D47E007946C0 /* AppDelegate.swift in Sources */,
