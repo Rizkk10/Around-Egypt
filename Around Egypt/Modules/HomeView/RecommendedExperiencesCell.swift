@@ -19,8 +19,6 @@ class RecommendedExperiencesCell: UICollectionViewCell {
     func configCell(experience: Experiences){
         experienceTitle.text = experience.title
         experienceLikes.text = String(experience.likes_no ?? 0)
-        self.layer.borderColor = UIColor.systemGray.cgColor
-        self.layer.borderWidth = 0.4
         self.layer.cornerRadius = 25
         self.layer.masksToBounds = true
         self.contentView.layer.masksToBounds = true
@@ -28,5 +26,6 @@ class RecommendedExperiencesCell: UICollectionViewCell {
         let url = URL(string: experience.cover_photo!)
         experirnceImage.kf.indicatorType = .activity
         experirnceImage.kf.setImage(with: url)
+        
     }
 }

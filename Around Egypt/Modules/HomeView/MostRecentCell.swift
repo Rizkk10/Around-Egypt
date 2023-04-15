@@ -18,8 +18,6 @@ class MostRecentCell: UICollectionViewCell {
     func configCell(experience: Experiences){
         mostRecentTitle.text = experience.title
         mostRecentLikes.text = String(experience.likes_no ?? 0)
-        self.layer.borderColor = UIColor.systemGray.cgColor
-        self.layer.borderWidth = 0.4
         self.layer.cornerRadius = 25
         self.layer.masksToBounds = true
         self.contentView.layer.masksToBounds = true

@@ -102,9 +102,9 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == recommendedExperience {
-            return CGSize(width: 169 , height: 169)
+            return CGSize(width: recommendedExperience.frame.width , height: recommendedExperience.frame.height)
         }
-        return CGSize(width: 169 , height: 169)
+        return CGSize(width: mostRecent.frame.width , height: mostRecent.frame.height)
         
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
