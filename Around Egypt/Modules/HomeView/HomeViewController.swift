@@ -94,22 +94,22 @@ class HomeViewController: UIViewController , HomeViewProtocol {
             }
         }
     }
-        
-        func checkConnection(){
-            if reachability.connection == .unavailable {
-                if let data = UserDefaults.standard.data(forKey: "recommendedResult"), let result = try? JSONDecoder().decode([Experiences].self, from: data) {
-                    viewModel.recommendedResult = result
-                }
-                if let data = UserDefaults.standard.data(forKey: "recentResult"), let result = try? JSONDecoder().decode([Experiences].self, from: data) {
-                    viewModel.recentResult = result
-                }
-                
-            } else {
-                viewModel.getRecommendedExperiences()
-                viewModel.getRecentExperiences()
+    
+    func checkConnection(){
+        if reachability.connection == .unavailable {
+            if let data = UserDefaults.standard.data(forKey: "recommendedResult"), let result = try? JSONDecoder().decode([Experiences].self, from: data) {
+                viewModel.recommendedResult = result
             }
+            if let data = UserDefaults.standard.data(forKey: "recentResult"), let result = try? JSONDecoder().decode([Experiences].self, from: data) {
+                viewModel.recentResult = result
+            }
+            
+        } else {
+            viewModel.getRecommendedExperiences()
+            viewModel.getRecentExperiences()
         }
-        
     }
     
+}
+
 
