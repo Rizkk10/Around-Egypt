@@ -22,8 +22,7 @@ class HomeViewController: UIViewController , HomeViewProtocol {
     var searchController: UISearchController!
     var viewModel : HomeViewModel!
     let reachability = try! Reachability()
-    let cache = NSCache<NSString, NSArray>()
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,21 +32,18 @@ class HomeViewController: UIViewController , HomeViewProtocol {
                 self?.renderCollection()
             }
         }
-        
-        if reachability.connection != .unavailable {
-            viewModel.getRecommendedExperiences()
-            viewModel.getRecentExperiences()
-        } else {
-            // Load data from cache if app is offline
-            if let cachedRecommended = cache.object(forKey: "recommendedExperiences") as? [Experiences] {
-                viewModel.recommendedResult = cachedRecommended
+        if reachability.connection == .unavailable {
+            if let data = UserDefaults.standard.data(forKey: "recommendedResult"), let result = try? JSONDecoder().decode([Experiences].self, from: data) {
+                viewModel.recommendedResult = result
             }
-            
-            if let cachedRecent = cache.object(forKey: "recentExperiences") as? [Experiences] {
-                viewModel.recentResult = cachedRecent
+            if let data = UserDefaults.standard.data(forKey: "recentResult"), let result = try? JSONDecoder().decode([Experiences].self, from: data) {
+                viewModel.recentResult = result
             }
-            renderCollection()
-        }
+                
+            } else {
+                viewModel.getRecommendedExperiences()
+                viewModel.getRecentExperiences()
+            }
         configureSearchController()
     }
     

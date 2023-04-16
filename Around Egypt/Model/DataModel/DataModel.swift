@@ -12,7 +12,7 @@ class Result : Decodable {
     var data : [Experiences]
 }
 
-class Experiences : Decodable {
+class Experiences : Decodable , Encodable {
     var title : String?
     var id : String?
     var cover_photo : String?
