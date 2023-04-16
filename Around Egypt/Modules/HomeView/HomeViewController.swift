@@ -20,10 +20,11 @@ class HomeViewController: UIViewController , HomeViewProtocol {
     @IBOutlet weak var recommendedExperience: UICollectionView!
     @IBOutlet weak var mostRecent: UICollectionView!
     var searchController: UISearchController!
+    var bookmarkButton: UIButton!
     var viewModel : HomeViewModel!
     let reachability = try! Reachability()
-    
-    
+    var index = 0 
+
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = HomeViewModel()
@@ -32,6 +33,44 @@ class HomeViewController: UIViewController , HomeViewProtocol {
                 self?.renderCollection()
             }
         }
+        checkConnection()
+        configureSearchController()
+    }
+    
+    
+    @IBAction func recommendedLikeTapped(_ sender: Any) {
+        viewModel.recommendedResult[index].likes_no! += 1 // update likes_no before sending the request
+            guard let url = URL(string: "http://aroundegypt.34ml.com/api/v2/experiences/\(String(describing: viewModel.recommendedResult[index].id))/like") else { return }
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            let task = URLSession.shared.dataTask(with: request) { [self] (data, response, error) in
+                guard response is HTTPURLResponse else {
+                    DispatchQueue.main.async { [self] in
+                        recommendedExperience.reloadData()
+                    }
+                    return
+                }
+            }
+            task.resume()
+    }
+    
+    @IBAction func recentLikeTapped(_ sender: Any) {
+        viewModel.recentResult[index].likes_no! += 1 // update likes_no before sending the request
+            guard let url = URL(string: "http://aroundegypt.34ml.com/api/v2/experiences/\(String(describing: viewModel.recentResult[index].id))/like") else { return }
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            let task = URLSession.shared.dataTask(with: request) { [self] (data, response, error) in
+                guard response is HTTPURLResponse else {
+                    DispatchQueue.main.async { [self] in
+                        mostRecent.reloadData()
+                    }
+                    return
+                }
+            }
+            task.resume()
+    }
+    
+    func checkConnection(){
         if reachability.connection == .unavailable {
             if let data = UserDefaults.standard.data(forKey: "recommendedResult"), let result = try? JSONDecoder().decode([Experiences].self, from: data) {
                 viewModel.recommendedResult = result
@@ -39,90 +78,13 @@ class HomeViewController: UIViewController , HomeViewProtocol {
             if let data = UserDefaults.standard.data(forKey: "recentResult"), let result = try? JSONDecoder().decode([Experiences].self, from: data) {
                 viewModel.recentResult = result
             }
-                
-            } else {
-                viewModel.getRecommendedExperiences()
-                viewModel.getRecentExperiences()
-            }
-        configureSearchController()
+            
+        } else {
+            viewModel.getRecommendedExperiences()
+            viewModel.getRecentExperiences()
+        }
     }
-    
-    
-    func renderCollection() {
-        self.recommendedExperience.reloadData()
-        self.mostRecent.reloadData()
-    }
-}
-extension HomeViewController: UISearchResultsUpdating, UISearchControllerDelegate {
-    func updateSearchResults(for searchController: UISearchController) {
-        
-    }
-    
-    func configureSearchController(){
-        searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search experiences"
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
-        searchController.delegate = self
-    }
-    
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        let searchViewController = storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
-        self.navigationController?.pushViewController(searchViewController, animated: true)
-        return true
-    }
+   
 }
 
 
-extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == recommendedExperience {
-            return viewModel.recommendedResult.count
-        }
-        return viewModel.recentResult.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == recommendedExperience {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecommendedExperiences", for: indexPath) as! RecommendedExperiencesCell
-            cell.configCell(experience: viewModel.recommendedResult[indexPath.row])
-            return cell
-        }
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MostRecent", for: indexPath) as! MostRecentCell
-        cell.configCell(experience: viewModel.recentResult[indexPath.row])
-        return cell
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == recommendedExperience {
-            return CGSize(width: recommendedExperience.frame.width , height: recommendedExperience.frame.height)
-        }
-        return CGSize(width: mostRecent.frame.width , height: mostRecent.frame.height)
-        
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let Experience = ExperienceScreenData()
-        if collectionView == recommendedExperience {
-            Experience.experienceID = viewModel.recommendedResult[indexPath.row].id!
-        }
-        if collectionView == mostRecent {
-            Experience.experienceID = viewModel.recentResult[indexPath.row].id!
-        }
-        let ExperienceVC = UIHostingController(rootView: ExperienceScreen().environmentObject(Experience))
-        
-        self.navigationController?.pushViewController(ExperienceVC, animated: true)
-    }
-    
-    
-}

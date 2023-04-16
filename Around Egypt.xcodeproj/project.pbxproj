@@ -12,6 +12,8 @@
 		C7164A1DD4F49E24BDA7ED4E /* Pods_Around_Egypt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E837D3DF7535C8D48F1E1F /* Pods_Around_Egypt.framework */; };
 		F032E93829EA21E300B0F381 /* ExperienceScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F032E93729EA21E300B0F381 /* ExperienceScreen.swift */; };
 		F032E93A29EA47CF00B0F381 /* ExperienceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F032E93929EA47CF00B0F381 /* ExperienceViewModel.swift */; };
+		F0D61E3129EB788F00881F40 /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D61E3029EB788F00881F40 /* CollectionExtension.swift */; };
+		F0D61E3329EB797000881F40 /* SearchExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D61E3229EB797000881F40 /* SearchExtension.swift */; };
 		F0E703A429E8D47E007946C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E703A329E8D47E007946C0 /* AppDelegate.swift */; };
 		F0E703A629E8D47E007946C0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E703A529E8D47E007946C0 /* SceneDelegate.swift */; };
 		F0E703A829E8D47E007946C0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E703A729E8D47E007946C0 /* HomeViewController.swift */; };
@@ -60,6 +62,8 @@
 		E2AEFCD113D62DB08B51963E /* Pods-Around Egypt-Around EgyptUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Around Egypt-Around EgyptUITests.release.xcconfig"; path = "Target Support Files/Pods-Around Egypt-Around EgyptUITests/Pods-Around Egypt-Around EgyptUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F032E93729EA21E300B0F381 /* ExperienceScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceScreen.swift; sourceTree = "<group>"; };
 		F032E93929EA47CF00B0F381 /* ExperienceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceViewModel.swift; sourceTree = "<group>"; };
+		F0D61E3029EB788F00881F40 /* CollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtension.swift; sourceTree = "<group>"; };
+		F0D61E3229EB797000881F40 /* SearchExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchExtension.swift; sourceTree = "<group>"; };
 		F0E703A029E8D47E007946C0 /* Around Egypt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Around Egypt.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0E703A329E8D47E007946C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0E703A529E8D47E007946C0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -227,6 +231,8 @@
 			isa = PBXGroup;
 			children = (
 				F0E703A729E8D47E007946C0 /* HomeViewController.swift */,
+				F0D61E3029EB788F00881F40 /* CollectionExtension.swift */,
+				F0D61E3229EB797000881F40 /* SearchExtension.swift */,
 				F0E703E629E8E94D007946C0 /* RecommendedExperiencesCell.swift */,
 				F0E703E829E8EB0A007946C0 /* MostRecentCell.swift */,
 			);
@@ -534,9 +540,11 @@
 				F0E703E329E8D9E2007946C0 /* NetworkManger.swift in Sources */,
 				F032E93829EA21E300B0F381 /* ExperienceScreen.swift in Sources */,
 				F0E703EB29E8EECB007946C0 /* HomeViewModel.swift in Sources */,
+				F0D61E3129EB788F00881F40 /* CollectionExtension.swift in Sources */,
 				F0E703A829E8D47E007946C0 /* HomeViewController.swift in Sources */,
 				F0E703A429E8D47E007946C0 /* AppDelegate.swift in Sources */,
 				F0E703E929E8EB0A007946C0 /* MostRecentCell.swift in Sources */,
+				F0D61E3329EB797000881F40 /* SearchExtension.swift in Sources */,
 				F0E703E729E8E94D007946C0 /* RecommendedExperiencesCell.swift in Sources */,
 				F0E703AE29E8D47E007946C0 /* Around_Egypt.xcdatamodeld in Sources */,
 				F0E703A629E8D47E007946C0 /* SceneDelegate.swift in Sources */,
