@@ -45,7 +45,7 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        index = indexPath.row
+        
         let Experience = ExperienceScreenData()
         if collectionView == recommendedExperience {
             Experience.experienceID = viewModel.recommendedResult[indexPath.row].id!
