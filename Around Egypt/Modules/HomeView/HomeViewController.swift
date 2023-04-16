@@ -39,7 +39,7 @@ class HomeViewController: UIViewController , HomeViewProtocol {
     
     
     @IBAction func recommendedLikeTapped(_ sender: Any) {
-        viewModel.recommendedResult[index].likes_no! += 1 // update likes_no before sending the request
+        viewModel.recommendedResult[index].likes_no! += 1 
             guard let url = URL(string: "http://aroundegypt.34ml.com/api/v2/experiences/\(String(describing: viewModel.recommendedResult[index].id))/like") else { return }
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
@@ -55,7 +55,7 @@ class HomeViewController: UIViewController , HomeViewProtocol {
     }
     
     @IBAction func recentLikeTapped(_ sender: Any) {
-        viewModel.recentResult[index].likes_no! += 1 // update likes_no before sending the request
+        viewModel.recentResult[index].likes_no! += 1
             guard let url = URL(string: "http://aroundegypt.34ml.com/api/v2/experiences/\(String(describing: viewModel.recentResult[index].id))/like") else { return }
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
